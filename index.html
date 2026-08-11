@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이준승 (JoonS-Lee) - 엔지니어 포트폴리오</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --dark-blue: #00008B;
+            --white: #FFFFFF;
+            --light-gray: #F5F7FA;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Nanum Gothic', sans-serif; color: var(--text-main); background-color: var(--white); line-height: 1.6; scroll-behavior: smooth; }
+        
+        /* Typography */
+        h1, h2, h3, h4 { color: var(--dark-blue); }
+        .highlight-royal { color: var(--royal-blue); font-weight: 800; }
+        .highlight-dark { color: var(--dark-blue); font-weight: 800; }
+
+        /* Navigation */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark-blue); text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 700; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--royal-blue); }
+
+        /* Sections */
+        section { padding: 6rem 2rem 4rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .section-inner { max-width: 1200px; width: 100%; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--royal-blue); margin: 0.5rem auto 0; }
+
+        /* Backgrounds */
+        .bg-white { background-color: var(--white); }
+        .bg-light { background-color: var(--light-gray); }
+
+        /* Hero Section */
+        #home { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-title { font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.3; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.8; }
+        .hero-image { flex: 1; display: flex; justify-content: center; min-width: 300px; }
+        .hero-image img { width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 4px solid var(--royal-blue); }
+        
+        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--royal-blue); color: var(--white); text-decoration: none; font-weight: 700; border-radius: 5px; transition: all 0.3s; }
+        .btn:hover { background: var(--dark-blue); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(65, 105, 225, 0.2); }
+
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .about-box { background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--royal-blue); }
+        .about-box h3 { font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--light-gray); padding-bottom: 0.5rem; }
+        .about-list { list-style: none; }
+        .about-list li { margin-bottom: 1rem; font-size: 1.1rem; }
+        .about-list span.date { color: var(--royal-blue); font-weight: bold; margin-right: 10px; font-size: 0.95rem; }
+
+        /* Career Timeline Section */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--light-gray); }
+        .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -26px; top: 0; width: 20px; height: 20px; background: var(--royal-blue); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 3px var(--royal-blue); }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item:last-child::before { background: var(--dark-blue); box-shadow: 0 0 0 3px var(--dark-blue); }
+        .timeline-date { color: var(--royal-blue); font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .timeline-title { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark-blue); }
+        .timeline-desc { color: var(--text-muted); line-height: 1.6; }
+
+        /* Projects Section */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--royal-blue); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .github-link { color: var(--royal-blue); font-weight: 700; text-decoration: none; }
+        .github-link:hover { text-decoration: underline; }
+
+        /* Footer */
+        footer { background: var(--dark-blue); color: var(--white); text-align: center; padding: 2rem; }
+        
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            #home { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home" class="logo">JoonS-Lee</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#career">Career</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="bg-light">
+        <div class="section-inner fade-in" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
+            <div class="hero-text">
+                <h1 class="hero-title">미래를 견인하는<br><span class="highlight-royal">전장 시스템 엔지니어</span></h1>
+                <p class="hero-subtitle">
+                    글로벌 산업차량 리더 <strong>HD현대사이트솔루션</strong>에서<br>
+                    안전하고 스마트한 미래형 모빌리티 제어 시스템을 구축합니다.<br>
+                    <span class="highlight-dark">해양설계부터 전동화·센서 융합까지</span> 폭넓은 엔지니어링 역량을 자랑합니다.
+                </p>
+                <a href="https://github.com/JoonS-Lee" target="_blank" class="btn">GitHub 방문하기</a>
+            </div>
+            <div class="hero-image">
+                <!-- 첨부해주신 이미지를 profile_image.jpg 로 동일 폴더에 저장하여 사용하세요 -->
+                <img src="profile_image.jpg" alt="이준승 엔지니어 프로필 이미지">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-white">
+        <div class="section-inner fade-in">
+            <h2 class="section-title">About Me</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem; font-size: 1.15rem;">
+                <p>총 <span class="highlight-royal">9.8년</span>의 복수직무 경험(산업차량설계 5.1년 / 해양설계 4.7년)을 바탕으로 복잡한 시스템 문제를 해결합니다. 극한 환경의 방폭 설계부터 최신 산업차량의 전동화 및 안전 시스템까지, 기술의 스펙트럼을 넓혀가고 있습니다.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-box">
+                    <h3>인증 및 자격 (Certifications)</h3>
+                    <ul class="about-list">
+                        <li>
+                            <span class="date">2018.09.12</span> 
+                            <strong>IECEx CoPC 방폭자격증</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">발행처: ExCB / 인증번호: IECEx CP TRNR18.0086</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-box">
+                    <h3>수상 내역 (Awards)</h3>
+                    <ul class="about-list">
+                        <li><span class="date">2025.12.03</span> 우수지원상</li>
+                        <li><span class="date">2020.01.20</span> 아이디어 공모전 포상 장려</li>
+                        <li><span class="date">2019.07.15</span> 차세대 우수인재상</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="bg-light">
+        <div class="section-inner fade-in">
+            <h2 class="section-title">Growth Story</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: var(--text-muted);">단순한 경력을 넘어, 끊임없이 진화하는 엔지니어의 성장 기록입니다.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2012.01 - 2021.01</div>
+                    <h3 class="timeline-title">해양설계 (대우조선해양)</h3>
+                    <p class="timeline-desc">
+                        해양전장 Communication 설계 및 전장설계를 담당하며 엔지니어링의 기본기를 다졌습니다. 
+                        가장 혹독한 해양 환경에서도 안정적으로 동작하는 방폭 시스템 및 프로세스를 이해하고 검증하는 역량을 키웠습니다.
+                    </p>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2021.01 - 2022</div>
+                    <h3 class="timeline-title">산업차량설계 합류</h3>
+                    <p class="timeline-desc">
+                        HD현대사이트솔루션에 합류하여 산업차량 분야로 도메인을 확장했습니다. 
+                        해양플랜트에서 쌓은 체계적인 프로세스 경험을 바탕으로 산업차량 개발 환경에 빠르게 적응하며 설계 효율성을 높였습니다.
+                    </p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2022 - 2024</div>
+                    <h3 class="timeline-title">산업차량 전장설계 및 전동화</h3>
+                    <p class="timeline-desc">
+                        전통적인 장비를 넘어 전동화(Electrification) 트렌드에 발맞춘 전장 시스템 설계를 주도했습니다.
+                        효율적인 전력 제어와 배터리 시스템 최적화를 통해 차세대 친환경 산업차량의 기반을 마련했습니다.
+                    </p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">현재</div>
+                    <h3 class="timeline-title">전장기술 · 안전 · 서비스 개발</h3>
+                    <p class="timeline-desc">
+                        현재는 단순 제어를 넘어 <span class="highlight-royal">센서, 카메라 비전, 스마트 제어 시스템</span>을 융합한 
+                        첨단 안전 및 서비스 기술 개발에 집중하고 있습니다. 보행자 감지 등 작업 환경의 안전을 최우선으로 하는 
+                        고도화된 모빌리티 솔루션을 설계합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-white">
+        <div class="section-inner">
+            <h2 class="section-title fade-in">Tech & Projects</h2>
+            <div class="grid">
+                <div class="card fade-in">
+                    <h3>산업차량 첨단 안전 시스템</h3>
+                    <p>카메라와 센서 융합 기술을 활용하여 산업차량 주변의 보행자와 장애물을 실시간으로 감지하고 사고를 예방하는 스마트 제어 로직 설계.</p>
+                    <a href="https://github.com/JoonS-Lee" target="_blank" class="github-link">GitHub에서 보기 &rarr;</a>
+                </div>
+                <div class="card fade-in">
+                    <h3>전동화 및 제어 최적화</h3>
+                    <p>HD현대사이트솔루션의 차세대 전동 지게차 및 물류 장비에 적용되는 메인 전장 시스템 및 배터리 전력 효율 제어 시스템 구축.</p>
+                    <a href="https://github.com/JoonS-Lee" target="_blank" class="github-link">GitHub에서 보기 &rarr;</a>
+                </div>
+                <div class="card fade-in">
+                    <h3>방폭 및 특수 환경 설계</h3>
+                    <p>IECEx CoPC 자격을 기반으로, 가스 및 분진 등 폭발 위험이 있는 특수 산업 현장에서도 안전하게 운용 가능한 장비 전장 설계 기술.</p>
+                    <a href="https://github.com/JoonS-Lee" target="_blank" class="github-link">GitHub에서 보기 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-light">
+        <div class="section-inner fade-in" style="text-align: center;">
+            <h2 class="section-title">Contact</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">스마트하고 안전한 산업차량의 미래, 함께 만들어가고 싶습니다.</p>
+            <p style="font-size: 1.2rem;"><strong>GitHub:</strong> <a href="https://github.com/JoonS-Lee" target="_blank" class="highlight-royal" style="text-decoration: none;">github.com/JoonS-Lee</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 JoonS-Lee. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Scroll Animation (Fade In)
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            // Navigation Active State Update
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
